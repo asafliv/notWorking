@@ -1,0 +1,84 @@
+<div class="container">
+
+    {{currSigVars}}
+    <bars curr-sig-vars="currSigVars"></bars>
+
+
+    <h3>{{anomalousProperty.key}} - {{anomalousProperty.value}} Data</h3>
+    <!--{{significantVariable.relativeChange>variableFilter}}-->
+    <table border="1"  style="max-width:500px;max-height:500px" >
+        <tr >
+            <th width="%100" style="text-align:center">
+                KEY
+            </th>
+            <th width="%100" style="text-align:center">
+                VALUE
+            <th width="%100" style="text-align:center">
+                RELATIVE CHANGE
+            </th>
+        </tr>
+
+        <tr align="center" ng-repeat="significantVariable in currSigVars |filter: checkKeyStr | filter:checkValuestr | filter:checkFiltersMax |  filter:checkFiltersMin">
+            <td width="%100">
+                {{significantVariable.key}}
+            </td>
+            <td width="%100">
+                {{significantVariable.value}}
+            </td>
+            <td width="%100">
+                {{significantVariable.relativeChange}}
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="50%">
+                relativeChange Min value to show:
+            </td>
+            <td>
+                <input ng-model="variableFilterValueMin" type="number"/>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%">
+                relativeChange Max value to show:
+            </td>
+            <td>
+                <input ng-model="variableFilterValueMax" type="number"/>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%">
+                KEY name to filter:
+            </td>
+            <td>
+                <input ng-model="keySearch" type="text"/>
+            </td>
+        </tr>
+        <tr>
+            <td width="50%">
+                key VALUE to filter:
+            </td>
+            <td>
+                <input ng-model="valueSearch" type="text"/>
+            </td>
+        </tr>
+
+        Show page:{{currentPage}} from {{numberOfPages}}
+        <tr>
+            <td width="50%">
+                Page Number:
+            </td>
+            <td>
+                <input ng-model="currentPage" ng-change="updateCurrSigVars()" type="number"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
